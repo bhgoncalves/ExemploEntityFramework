@@ -1,0 +1,37 @@
+<form novalidate autocomplete="off" #form="ngForm" (submit)="onSubmit(form)">
+    <div class="form-group">
+        <label>CPF:</label>
+        <input class="form-control form-control-md"  name="cpf"
+        [(ngModel)]="this.userService.formData.cpf"
+        required [class.invalid]="cpf.invalid && cpf.touched" maxlength="11" minlength="11" #cpf="ngModel">
+        <p *ngIf="cpf.invalid && cpf.touched" class="invalid">O cpf deve conter 11 dígitos</p>
+    </div>
+    <div class="form-group">
+        <label>Nome:</label>
+        <input class="form-control form-control-md"  name="nome"
+        [(ngModel)]="this.userService.formData.nome"
+        required [class.invalid]="nome.invalid && nome.touched"  minlength="2" maxlength="60" #nome= "ngModel">
+    </div>
+    <div class="form-group">
+        <label>Sobrenome:</label>
+        <input class="form-control form-control-md"  name="sobrenome"
+        [(ngModel)]="this.userService.formData.sobrenome" minlength="2" maxlength="60"
+        required [class.invalid]="sobrenome.invalid && sobrenome.touched" #sobrenome= "ngModel">
+    </div>
+    <div class="form-group">
+        <label>E-mail:</label>
+        <input class="form-control form-control-md"  name="email"
+        [(ngModel)]="this.userService.formData.email" minlength="2" maxlength="80"
+        required [class.invalid]="email.invalid && email.touched" #email= "ngModel">
+    </div>
+    <div class="form-group">
+        <label>Data de Nascimento:</label>
+        <input class="form-control form-control-md"  name="dtNascimento"
+        [ngModel]="this.userService.formData.dataNascimento| date : 'dd/MM/yyyy'" 
+        (ngModelChange)="this.userService.formData.dataNascimento=$event" minlength="10" maxlength="10"
+        required [class.invalid]="dataNascimento.invalid && dataNascimento.touched" #dataNascimento= "ngModel">
+    </div>
+    <div class="form-group col-md-4">
+        <button class="btn btn-info btn-lg btn-block" type="submit" [disabled]="form.invalid">Salvar</button>
+    </div>
+</form>

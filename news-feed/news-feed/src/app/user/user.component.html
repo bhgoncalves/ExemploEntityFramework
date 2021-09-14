@@ -1,0 +1,33 @@
+<div class="jumbotron py-3">
+    <h1 class="display-4 text-center">Cadastro de Usuários</h1>
+</div>
+
+<div class="row">
+    <div class="col-md-3">
+      <app-user-form></app-user-form>
+    </div>
+    <div class="col-md-9">
+        <table class="table">
+            <thead>
+                <tr>
+                    <td>CPF</td>
+                    <td>Nome</td>
+                    <td>E-mail</td>
+                    <td>Data de Nascimento </td>
+                    <td (click)="createUser()"><fa-icon [icon]="faPlus" class="invalid"></fa-icon></td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let user of userService.list">
+                    <td (click)="selectUser(user)">{{user.cpf}}</td>
+                    <td (click)="selectUser(user)">{{user.nome}}</td>
+                    <td (click)="selectUser(user)">{{user.email}}</td>
+                    <td (click)="selectUser(user)">{{user.dataNascimento | date : 'dd/MM/yyyy' }}</td>
+                    <td>
+                        <fa-icon [icon]="faTrashAlt" (click)="deleteUser(user.cpf)"></fa-icon>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
